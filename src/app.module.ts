@@ -75,6 +75,11 @@ import { PaymentMethodModule } from './payment-method/payment-method.module';
 import { PayrollModule } from './payroll/payroll.module';
 import { PerformanceMetricModule } from './performance-metric/performance-metric.module';
 import { PoultryBatchModule } from './poultry-batch/poultry-batch.module';
+import { QualityControlModule } from './quality-control/quality-control.module';
+import { ReceiptModule } from './receipt/Receipt.Module';
+import { SpoilageLossModule } from './SpoilageLoss/SpoilageLoss.Module';
+import { TreatmentScheduleModule } from './TreatmentSchedule/TreatmentSchedule.Module';
+import { VaccinationScheduleModule } from './VaccinationSchedule/VaccinationSchedule.Module';
 
 @Module({
   imports: [
@@ -162,7 +167,13 @@ import { PoultryBatchModule } from './poultry-batch/poultry-batch.module';
     PayrollModule,
     PurchaseModule, // Removed the trailing comma and undefined module
     PerformanceMetricModule,
-    PoultryBatchModule
+    PoultryBatchModule,
+    QualityControlModule,
+    ReceiptModule,
+    // Add other modules here
+    SpoilageLossModule,
+    TreatmentScheduleModule,
+    VaccinationScheduleModule,
   ],
   controllers: [AppController],
   providers: [AppService],
