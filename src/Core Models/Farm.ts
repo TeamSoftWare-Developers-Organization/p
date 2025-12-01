@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
-import { Coop } from './Coop';
+import { Shed } from './Shed';
 
 @Entity()
 export class Farm {
@@ -16,6 +16,6 @@ export class Farm {
   EstablishedDate: Date;
 
   // الخصائص الملاحية
-  @OneToMany(() => Coop, (coop: Coop) => coop.Farm)
-  Coops: Coop[];
+  @OneToMany(() => Shed, (shed: Shed) => shed.farm)
+  Coops: Shed[];
 }

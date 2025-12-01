@@ -4,25 +4,25 @@ import { CqrsModule } from '@nestjs/cqrs';
 import { CoopController } from './coop.controller';
 
 // استيراد مستلمات الأوامر
-import { CreateCoopHandler } from './commands/handlers/create-coop.handler';
-import { UpdateCoopHandler } from './commands/handlers/update-coop.handler';
-import { RemoveCoopHandler } from './commands/handlers/remove-coop.handler';
+import { CreateShedHandler } from './commands/handlers/create-shed.handler';
+import { UpdateShedHandler } from './commands/handlers/update-shed.handler';
+import { RemoveShedHandler } from './commands/handlers/remove-shed.handler';
 
 // استيراد مستلمات الاستعلامات
-import { GetCoopHandler } from './queries/handlers/get-coop.handler';
-import { GetCoopsHandler } from './queries/handlers/get-coops.handler';
-import { Coop } from 'src/Core Models/Coop';
+import { GetShedHandler } from './queries/handlers/get-shed.handler';
+import { GetShedsHandler } from './queries/handlers/get-sheds.handler';
+import { Shed } from 'src/Core Models/Shed';
 
 const CommandHandlers = [
-  CreateCoopHandler,
-  UpdateCoopHandler,
-  RemoveCoopHandler,
+  CreateShedHandler,
+  UpdateShedHandler,
+  RemoveShedHandler,
 ];
-const QueryHandlers = [GetCoopHandler, GetCoopsHandler];
+const QueryHandlers = [GetShedHandler, GetShedsHandler];
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Coop]), CqrsModule],
+  imports: [TypeOrmModule.forFeature([Shed]), CqrsModule],
   controllers: [CoopController],
   providers: [...CommandHandlers, ...QueryHandlers],
 })
-export class CoopModule {}
+export class CoopModule { }

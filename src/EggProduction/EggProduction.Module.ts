@@ -8,7 +8,7 @@ import { GetEggProductionHandler } from './queries/Handlers/GetEggProductionHand
 import { GetEggProductionsHandler } from './queries/Handlers/GetEggProductionsHandler';
 import { EggProductionController } from './EggProduction.Controller';
 import { CqrsModule } from '@nestjs/cqrs';
-import { Coop } from 'src/Core Models/Coop';
+import { Coop } from 'src/Core Models/Shedس';
 
 const CommandHandlers = [
   CreateEggProductionHandler,
@@ -22,4 +22,4 @@ const QueryHandlers = [GetEggProductionHandler, GetEggProductionsHandler];
   controllers: [EggProductionController],
   providers: [...CommandHandlers, ...QueryHandlers],
 })
-export class EggProductionModule {}
+export class EggProductionModule { }

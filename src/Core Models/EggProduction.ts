@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
-import { Coop } from './Coop';
+import { Shed } from './Shed';
 
 @Entity()
 export class EggProduction {
@@ -19,6 +19,6 @@ export class EggProduction {
   SpoilageRate: number | null;
 
   // الخصائص الملاحية
-  @ManyToOne(() => Coop, (coop) => coop.EggProductions)
-  Coop: Coop;
+  @ManyToOne(() => Shed, (shed) => shed.eggProductions)
+  Coop: Shed;
 }

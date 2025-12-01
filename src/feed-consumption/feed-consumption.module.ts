@@ -1,4 +1,4 @@
-    import { Module } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CqrsModule } from '@nestjs/cqrs';
 import { FeedConsumptionController } from './feed-consumption.controller';
@@ -10,7 +10,7 @@ import { CreateFeedConsumptionHandler } from './commands/Handler/create-feed-con
 import { UpdateFeedConsumptionHandler } from './commands/Handler/update-feed-consumption.command';
 import { RemoveFeedConsumptionHandler } from './commands/Handler/remove-feed-consumption.handler';
 import { FeedConsumption } from 'src/Core Models/FeedConsumption';
-import { Coop } from 'src/Core Models/Coop';
+import { Coop } from 'src/Core Models/Shedس';
 import { Feed } from 'src/Core Models/Feed';
 
 const CommandHandlers = [
@@ -31,8 +31,8 @@ const QueryHandlers = [
   ],
   controllers: [FeedConsumptionController],
   providers: [
-    ...CommandHandlers, 
+    ...CommandHandlers,
     ...QueryHandlers,
   ],
 })
-export class FeedConsumptionModule {}
+export class FeedConsumptionModule { }

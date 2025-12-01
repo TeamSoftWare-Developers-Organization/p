@@ -5,7 +5,7 @@ import {
   ManyToOne,
   OneToMany,
 } from 'typeorm';
-import { Coop } from './Coop';
+import { Shed } from './Shed';
 import { Breed } from './Breed';
 import { HealthLog } from './HealthLog';
 import { PurchaseDetail } from './purchase-detail';
@@ -24,8 +24,8 @@ export class Poultry {
   @Column({ nullable: true })
   BreedID: number | null;
 
-  @ManyToOne(() => Coop, (coop) => coop.Poultries)
-  Coop: Coop;
+  @ManyToOne(() => Shed, (shed) => shed.poultries)
+  Coop: Shed;
 
   @ManyToOne(() => Breed, (breed) => breed.Poultries)
   BreedRelation: Breed;

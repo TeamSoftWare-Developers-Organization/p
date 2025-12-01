@@ -1,6 +1,7 @@
 // في ملف: src/Core Models/PoultryBatch.ts
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
 import { Slaughterhouse } from './slaughterhouse';
+import { Shed } from './Shed';
 
 @Entity()
 export class PoultryBatch {
@@ -10,6 +11,9 @@ export class PoultryBatch {
   @Column()
   BatchName: string;
 
+  @Column({ nullable: true })
+  CoopID: number | null;
+
   // other properties...
 
   @ManyToOne(
@@ -17,4 +21,7 @@ export class PoultryBatch {
     (slaughterhouse) => slaughterhouse.PoultryBatches,
   )
   Slaughterhouse: Slaughterhouse;
+
+  @ManyToOne(() => Shed, (shed) => shed.poultryBatches)
+  Coop: Shed;
 }

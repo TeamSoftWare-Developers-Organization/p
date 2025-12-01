@@ -1,6 +1,6 @@
 // في ملف: src/mortality/mortality.entity.ts
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
-import { Coop } from './Coop';
+import { Shed } from './Shed';
 
 @Entity()
 export class Mortality {
@@ -19,6 +19,6 @@ export class Mortality {
   @Column({ length: 255, nullable: true })
   Cause: string;
 
-  @ManyToOne(() => Coop, (coop) => coop.Mortalities)
-  Coop: Coop;
+  @ManyToOne(() => Shed, (shed) => shed.mortalities)
+  Coop: Shed;
 }
