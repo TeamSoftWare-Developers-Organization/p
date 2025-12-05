@@ -3,7 +3,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CqrsModule } from '@nestjs/cqrs';
 import { PoultryController } from './poultry.controller';
-import { Poultry } from './poultry.entity';
+import { Poultry } from '../Core Models/Poultry';
 
 // استيراد جميع مستلمات الأوامر
 import { CreatePoultryHandler } from './commands/handlers/create-poultry.handler';
@@ -26,4 +26,4 @@ const QueryHandlers = [GetPoultryHandler, GetPoultriesHandler];
   controllers: [PoultryController],
   providers: [...CommandHandlers, ...QueryHandlers],
 })
-export class PoultryModule {}
+export class PoultryModule { }

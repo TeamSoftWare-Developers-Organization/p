@@ -10,7 +10,7 @@ import { CreateFeedConsumptionHandler } from './commands/Handler/create-feed-con
 import { UpdateFeedConsumptionHandler } from './commands/Handler/update-feed-consumption.command';
 import { RemoveFeedConsumptionHandler } from './commands/Handler/remove-feed-consumption.handler';
 import { FeedConsumption } from 'src/Core Models/FeedConsumption';
-import { Coop } from 'src/Core Models/Shedس';
+import { Shed } from 'src/Core Models/Shed';
 import { Feed } from 'src/Core Models/Feed';
 
 const CommandHandlers = [
@@ -26,7 +26,7 @@ const QueryHandlers = [
 @Module({
   imports: [
     // ربط الكيانات التي تتعامل معها هذه الوحدة
-    TypeOrmModule.forFeature([FeedConsumption, Coop, Feed]),
+    TypeOrmModule.forFeature([FeedConsumption, Shed, Feed]),
     CqrsModule,
   ],
   controllers: [FeedConsumptionController],

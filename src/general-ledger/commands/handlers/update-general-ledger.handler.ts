@@ -7,14 +7,13 @@ import { UpdateGeneralLedgerCommand } from '../impl/update-general-ledger.comman
 
 @CommandHandler(UpdateGeneralLedgerCommand)
 export class UpdateGeneralLedgerHandler
-  implements ICommandHandler<UpdateGeneralLedgerCommand>
-{
+  implements ICommandHandler<UpdateGeneralLedgerCommand> {
   constructor(
     @InjectRepository(GeneralLedger)
     private readonly generalLedgerRepository: Repository<GeneralLedger>,
-  ) {}
+  ) { }
 
-  async execute(command: UpdateGeneralLedgerCommand): Promise<GeneralLedger> {
+  async execute(command: UpdateGeneralLedgerCommand): Promise<GeneralLedger | null> {
     const { ledgerId, updateGeneralLedgerDto } = command;
     await this.generalLedgerRepository.update(ledgerId, updateGeneralLedgerDto);
     return this.generalLedgerRepository.findOneBy({ LedgerID: ledgerId });

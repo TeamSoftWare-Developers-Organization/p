@@ -7,14 +7,13 @@ import { GetGeneralLedgerQuery } from '../impl/get-general-ledger.query';
 
 @QueryHandler(GetGeneralLedgerQuery)
 export class GetGeneralLedgerHandler
-  implements IQueryHandler<GetGeneralLedgerQuery>
-{
+  implements IQueryHandler<GetGeneralLedgerQuery> {
   constructor(
     @InjectRepository(GeneralLedger)
     private readonly generalLedgerRepository: Repository<GeneralLedger>,
-  ) {}
+  ) { }
 
-  async execute(query: GetGeneralLedgerQuery): Promise<GeneralLedger> {
+  async execute(query: GetGeneralLedgerQuery): Promise<GeneralLedger | null> {
     const { ledgerId } = query;
     return this.generalLedgerRepository.findOneBy({ LedgerID: ledgerId });
   }

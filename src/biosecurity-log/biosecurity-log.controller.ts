@@ -18,13 +18,14 @@ import { BiosecurityLog } from 'src/Core Models/BiosecurityLog';
 import { UpdateBiosecurityLogDto } from './dto/update-biosecurity-log.dto';
 import { CreateBiosecurityLogCommand } from './commands/Impi/create-biosecurity-log.command';
 import { UpdateBiosecurityLogCommand } from './commands/Impi/update-biosecurity-log.command';
+import { DeleteBiosecurityLogCommand } from './commands/Impi/delete-biosecurity-log.command';
 
 @Controller('biosecurity-log')
 export class BiosecurityLogController {
   constructor(
     private readonly commandBus: CommandBus,
     private readonly queryBus: QueryBus,
-  ) {}
+  ) { }
 
   @Post()
   create(@Body() dto: CreateBiosecurityLogDto): Promise<BiosecurityLog> {
@@ -51,6 +52,6 @@ export class BiosecurityLogController {
 
   @Delete(':id')
   remove(@Param('id', ParseIntPipe) id: number): Promise<void> {
-    return this.commandBus.execute(new CreateBiosecurityLogCommand(id));
+    return this.commandBus.execute(new DeleteBiosecurityLogCommand(id));
   }
 }

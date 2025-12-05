@@ -1,16 +1,16 @@
 
-import { IsNumber, IsDateString, IsString } from 'class-validator';
+import { IsNumber, IsDateString, IsString, IsOptional } from 'class-validator';
 
 export class CreatePerformanceMetricDto {
   @IsNumber()
-  batchId: number;
+  BatchId: number;
 
   @IsDateString()
-  date: Date;
+  Date: Date;
 
   @IsString()
-  metricName: string;
+  MetricName: string;
 
   @IsNumber()
-  value: number;
+  Value: number;
 }

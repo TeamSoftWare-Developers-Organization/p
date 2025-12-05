@@ -4,7 +4,7 @@ import { EquipmentModule } from './equipment/equipment.module';
 import { AttendanceModule } from './attendance/attendance.module';
 import { Module } from '@nestjs/common';
 import { Breed } from './Core Models/Breed';
-import { Coop } from './Core Models/Shedس';
+import { Shed } from './Core Models/Shed';
 import { Farm } from './Core Models/Farm';
 import { EggProduction } from './Core Models/EggProduction';
 import { Poultry } from './Core Models/Poultry';
@@ -94,7 +94,7 @@ import { VaccinationScheduleModule } from './VaccinationSchedule/VaccinationSche
       entities: [
         Poultry,
         Breed,
-        Coop,
+        Shed,
         Farm,
         EggProduction,
         FrozenPoultryInventory,

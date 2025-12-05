@@ -3,13 +3,13 @@ import { CommandHandler, ICommandHandler, QueryHandler, IQueryHandler } from '@n
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateMortalityCommand, UpdateMortalityCommand, DeleteMortalityCommand } from '../commands/mortality.commands';
-import { GetMortalityQuery, GetAllMortalitiesQuery } from '../queries/mortality.queries';
+import { GetMortalityByIdQuery, GetAllMortalitesQuery } from '../queries/mortality.queries';
 import { Mortality } from 'src/Core Models/Mortality';
 
 // Command Handlers
 @CommandHandler(CreateMortalityCommand)
 export class CreateMortalityHandler implements ICommandHandler<CreateMortalityCommand> {
-  constructor(@InjectRepository(Mortality) private readonly mortalityRepository: Repository<Mortality>) {}
+  constructor(@InjectRepository(Mortality) private readonly mortalityRepository: Repository<Mortality>) { }
 
   async execute(command: CreateMortalityCommand): Promise<Mortality> {
     const newMortality = this.mortalityRepository.create(command.createMortalityDto);
@@ -19,14 +19,14 @@ export class CreateMortalityHandler implements ICommandHandler<CreateMortalityCo
 
 @CommandHandler(UpdateMortalityCommand)
 export class UpdateMortalityHandler implements ICommandHandler<UpdateMortalityCommand> {
-  constructor(@InjectRepository(Mortality) private readonly mortalityRepository: Repository<Mortality>) {}
+  constructor(@InjectRepository(Mortality) private readonly mortalityRepository: Repository<Mortality>) { }
 
   async execute(command: UpdateMortalityCommand): Promise<Mortality> {
-    const { MortalityID, ...rest } = command.updateMortalityDto;
-    await this.mortalityRepository.update(MortalityID, rest);
-    const updatedMortality = await this.mortalityRepository.findOne({ where: { MortalityID } });
+    const id = command.id;
+    await this.mortalityRepository.update(id, command.updateMortalityDto);
+    const updatedMortality = await this.mortalityRepository.findOne({ where: { MortalityID: id } });
     if (!updatedMortality) {
-      throw new Error(`Mortality with ID ${MortalityID} not found after update.`);
+      throw new Error(`Mortality with ID ${id} not found after update.`);
     }
     return updatedMortality;
   }
@@ -34,7 +34,7 @@ export class UpdateMortalityHandler implements ICommandHandler<UpdateMortalityCo
 
 @CommandHandler(DeleteMortalityCommand)
 export class DeleteMortalityHandler implements ICommandHandler<DeleteMortalityCommand> {
-  constructor(@InjectRepository(Mortality) private readonly mortalityRepository: Repository<Mortality>) {}
+  constructor(@InjectRepository(Mortality) private readonly mortalityRepository: Repository<Mortality>) { }
 
   async execute(command: DeleteMortalityCommand): Promise<void> {
     await this.mortalityRepository.delete(command.id);
@@ -42,20 +42,20 @@ export class DeleteMortalityHandler implements ICommandHandler<DeleteMortalityCo
 }
 
 // Query Handlers
-@QueryHandler(GetMortalityQuery)
-export class GetMortalityHandler implements IQueryHandler<GetMortalityQuery> {
-  constructor(@InjectRepository(Mortality) private readonly mortalityRepository: Repository<Mortality>) {}
+@QueryHandler(GetMortalityByIdQuery)
+export class GetMortalityHandler implements IQueryHandler<GetMortalityByIdQuery> {
+  constructor(@InjectRepository(Mortality) private readonly mortalityRepository: Repository<Mortality>) { }
 
-  async execute(query: GetMortalityQuery): Promise<Mortality | null> {
+  async execute(query: GetMortalityByIdQuery): Promise<Mortality | null> {
     return this.mortalityRepository.findOne({ where: { MortalityID: query.id } });
   }
 }
 
-@QueryHandler(GetAllMortalitiesQuery)
-export class GetAllMortalitiesHandler implements IQueryHandler<GetAllMortalitiesQuery> {
-  constructor(@InjectRepository(Mortality) private readonly mortalityRepository: Repository<Mortality>) {}
+@QueryHandler(GetAllMortalitesQuery)
+export class GetAllMortalitiesHandler implements IQueryHandler<GetAllMortalitesQuery> {
+  constructor(@InjectRepository(Mortality) private readonly mortalityRepository: Repository<Mortality>) { }
 
-  async execute(query: GetAllMortalitiesQuery): Promise<Mortality[]> {
+  async execute(query: GetAllMortalitesQuery): Promise<Mortality[]> {
     return this.mortalityRepository.find();
   }
 }
