@@ -45,7 +45,7 @@ export class Shed {
     @Column({ type: 'date', nullable: true })
     lastCleaned: Date;
 
-    @Column({ nullable: true })
+    @Column({ type: 'int', nullable: true })
     farmID: number | null;
 
     // العلاقات

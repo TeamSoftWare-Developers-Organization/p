@@ -21,7 +21,7 @@ export class Poultry {
   @Column({ type: 'date', nullable: true })
   HatchDate: Date | null;
 
-  @Column({ nullable: true })
+  @Column({ type: 'int', nullable: true })
   BreedID: number | null;
 
   @ManyToOne(() => Shed, (shed) => shed.poultries)

@@ -19,6 +19,9 @@ export class Attendance {
   @Column({ type: 'timestamp', nullable: true })
   TimeOut: Date | null;
 
+  @Column({ length: 50, nullable: true })
+  Status: string;
+
   @ManyToOne(() => Employee, (employee) => employee.Attendance)
   Employee: Employee;
 }

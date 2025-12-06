@@ -18,6 +18,6 @@ export class FrozenPoultryInventory {
   @Column({ type: 'date' })
   FreezeDate: Date;
 
-  @Column({ nullable: true })
+  @Column({ type: 'int', nullable: true })
   SlaughterhouseID: number | null; // إضافة المفتاح الخارجي
 }

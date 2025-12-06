@@ -9,7 +9,7 @@ export class Farm {
   @Column({ length: 100 })
   FarmName: string;
 
-  @Column({ length: 255, nullable: true })
+  @Column({ type: 'varchar', length: 255, nullable: true })
   Address: string | null;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })

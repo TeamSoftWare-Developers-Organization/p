@@ -81,6 +81,11 @@ import { SpoilageLossModule } from './SpoilageLoss/SpoilageLoss.Module';
 import { TreatmentScheduleModule } from './TreatmentSchedule/TreatmentSchedule.Module';
 import { VaccinationScheduleModule } from './VaccinationSchedule/VaccinationSchedule.Module';
 
+import { Slaughterhouse } from './Core Models/slaughterhouse';
+import { SaleDetail } from './Core Models/sale-detail';
+import { UserModule } from './user/user.module';
+import { RoleModule } from './role/role.module';
+
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -137,6 +142,8 @@ import { VaccinationScheduleModule } from './VaccinationSchedule/VaccinationSche
         EggInventory,
         Receipt,
         PurchaseDetail,
+        Slaughterhouse,
+        SaleDetail,
       ],
     }),
     PoultryModule,
@@ -174,6 +181,8 @@ import { VaccinationScheduleModule } from './VaccinationSchedule/VaccinationSche
     SpoilageLossModule,
     TreatmentScheduleModule,
     VaccinationScheduleModule,
+    RoleModule,
+    UserModule
   ],
   controllers: [AppController],
   providers: [AppService],

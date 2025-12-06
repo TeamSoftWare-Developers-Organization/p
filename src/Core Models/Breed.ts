@@ -7,7 +7,7 @@ export class Breed {
   BreedID: number;
   @Column({ length: 100 })
   BreedName: string;
-  @Column({ length: 255, nullable: true })
+  @Column({ type: 'varchar', length: 255, nullable: true })
   Description: string | null;
   @OneToMany(() => Poultry, (poultry: Poultry) => poultry.BreedRelation)
   Poultries: Poultry[];

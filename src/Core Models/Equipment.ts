@@ -10,7 +10,7 @@ export class Equipment {
   @Column({ length: 100 })
   Name: string;
 
-  @Column({ length: 255, nullable: true })
+  @Column({ type: 'varchar', length: 255, nullable: true })
   Description: string | null;
 
   @Column({ type: 'date' })

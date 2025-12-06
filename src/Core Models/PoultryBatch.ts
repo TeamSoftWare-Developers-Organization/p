@@ -11,7 +11,7 @@ export class PoultryBatch {
   @Column()
   BatchName: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'int', nullable: true })
   CoopID: number | null;
 
   // other properties...
