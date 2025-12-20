@@ -6,6 +6,7 @@ import { EquipmentController } from './equipment.controller';
 // استيراد مستلمات الأوامر
 import { CreateEquipmentHandler } from './commands/handlers/create-equipment.handler';
 import { RemoveEquipmentHandler } from './commands/handlers/remove-equipment.handler';
+import { UpdateEquipmentHandler } from './commands/handlers/Update Equipment.handler';
 
 // استيراد مستلمات الاستعلامات
 import { GetEquipmentHandler } from './queries/handlers/get-equipment.handler';
@@ -16,8 +17,10 @@ import { MaintenanceSchedule } from 'src/Core Models/MaintenanceSchedule';
 const CommandHandlers = [
   CreateEquipmentHandler,
   RemoveEquipmentHandler,
+  UpdateEquipmentHandler,
 ];
 const QueryHandlers = [GetEquipmentHandler, GetEquipmentsHandler];
+
 
 @Module({
   imports: [
@@ -27,4 +30,4 @@ const QueryHandlers = [GetEquipmentHandler, GetEquipmentsHandler];
   controllers: [EquipmentController],
   providers: [...CommandHandlers, ...QueryHandlers],
 })
-export class EquipmentModule {}
+export class EquipmentModule { }
