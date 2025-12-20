@@ -94,6 +94,7 @@ import { SaleDetail } from './Core Models/sale-detail';
 import { UserModule } from './user/user.module';
 import { RoleModule } from './role/role.module';
 import { Vaccine } from './Core Models/Vaccine';
+import { CoopModule } from './coop/coop.module';
 
 @Module({
   imports: [
@@ -192,7 +193,8 @@ import { Vaccine } from './Core Models/Vaccine';
     TreatmentScheduleModule,
     VaccinationScheduleModule,
     RoleModule,
-    UserModule
+    UserModule,
+    CoopModule
   ],
   controllers: [AppController],
   providers: [AppService],
