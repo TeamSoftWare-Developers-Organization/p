@@ -11,7 +11,7 @@ import { SalesReturnDetail } from 'src/Core Models/SalesReturnDetail';
 // استيراد الأوامر والاستعلامات
 
 const CommandHandlers = [CreateSalesReturnHandler, RemoveSalesReturnHandler];
-const QueryHandlers = [GetSalesReturnsHandler, GetSalesReturnsHandler];
+const QueryHandlers = [GetSalesReturnsHandler];
 
 @Module({
   imports: [
@@ -21,4 +21,4 @@ const QueryHandlers = [GetSalesReturnsHandler, GetSalesReturnsHandler];
   controllers: [SalesReturnController],
   providers: [...CommandHandlers, ...QueryHandlers],
 })
-export class SalesReturnModule {}
+export class SalesReturnModule { }

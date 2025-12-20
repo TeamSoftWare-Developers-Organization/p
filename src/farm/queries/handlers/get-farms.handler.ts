@@ -10,9 +10,9 @@ export class GetFarmsHandler implements IQueryHandler<GetFarmsQuery> {
   constructor(
     @InjectRepository(Farm)
     private readonly farmRepository: Repository<Farm>,
-  ) {}
+  ) { }
 
   async execute(): Promise<Farm[]> {
-    return this.farmRepository.find({ relations: ['Coops', 'Employees'] });
+    return this.farmRepository.find({ relations: ['Coops'] });
   }
 }

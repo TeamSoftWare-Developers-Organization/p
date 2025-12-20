@@ -1,6 +1,6 @@
 // في ملف: src/financial-transaction/financial-transaction.entity.ts
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
-import { ChartOfAccounts } from './ChartOfAccounts ';
+import { ChartOfAccounts } from './ChartOfAccounts';
 
 @Entity()
 export class FinancialTransaction {

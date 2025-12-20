@@ -10,9 +10,9 @@ export class GetBreedsHandler implements IQueryHandler<GetBreedsQuery> {
   constructor(
     @InjectRepository(Breed)
     private readonly breedRepository: Repository<Breed>,
-  ) {}
+  ) { }
 
   async execute(): Promise<Breed[]> {
-    return this.breedRepository.find({ relations: ['Poultry'] });
+    return this.breedRepository.find({ relations: ['Poultries'] });
   }
 }

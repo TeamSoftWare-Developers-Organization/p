@@ -9,16 +9,16 @@ import { UpdateBiosecurityLogHandler } from './commands/handlers/update-biosecur
 
 // Import query handlers
 import { GetBiosecurityLogByIdHandler } from './queries/handlers/get-biosecurity-log-by-id.handler';
+import { GetAllBiosecurityLogsHandler } from './queries/handlers/get-all-biosecurity-logs.handler';
 import { BiosecurityLog } from 'src/Core Models/BiosecurityLog';
 
 const CommandHandlers = [
   CreateBiosecurityLogHandler,
   UpdateBiosecurityLogHandler,
-  CreateBiosecurityLogHandler,
 ];
 const QueryHandlers = [
   GetBiosecurityLogByIdHandler,
-  GetBiosecurityLogByIdHandler,
+  GetAllBiosecurityLogsHandler,
 ];
 
 @Module({
@@ -26,4 +26,4 @@ const QueryHandlers = [
   controllers: [BiosecurityLogController],
   providers: [...CommandHandlers, ...QueryHandlers],
 })
-export class BiosecurityLogModule {}
+export class BiosecurityLogModule { }

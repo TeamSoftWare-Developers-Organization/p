@@ -6,7 +6,7 @@ import { GetJournalEntryHandler } from './queries/handlers/get-journal-entry.han
 import { JournalEntryController } from './journal-entry.controller';
 import { JournalEntry } from 'src/Core Models/JournalEntry';
 import { JournalEntryDetail } from 'src/Core Models/JournalEntryDetail';
-import { ChartOfAccounts } from 'src/Core Models/ChartOfAccounts ';
+import { ChartOfAccounts } from 'src/Core Models/ChartOfAccounts';
 
 export const CommandHandlers = [CreateJournalEntryHandler];
 export const QueryHandlers = [GetJournalEntryHandler];
@@ -19,4 +19,4 @@ export const QueryHandlers = [GetJournalEntryHandler];
   controllers: [JournalEntryController],
   providers: [...CommandHandlers, ...QueryHandlers],
 })
-export class JournalEntryModule {}
+export class JournalEntryModule { }

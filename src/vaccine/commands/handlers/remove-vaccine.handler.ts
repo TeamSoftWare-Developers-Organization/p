@@ -4,16 +4,15 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { NotFoundException } from '@nestjs/common';
 import { RemoveVaccineCommand } from '../impl/remove-vaccine.command';
-import { Vaccine } from 'src/Core Models/vaccine';
+import { Vaccine } from 'src/Core Models/Vaccine';
 
 @CommandHandler(RemoveVaccineCommand)
 export class RemoveVaccineHandler
-  implements ICommandHandler<RemoveVaccineCommand>
-{
+  implements ICommandHandler<RemoveVaccineCommand> {
   constructor(
     @InjectRepository(Vaccine)
     private readonly vaccineRepository: Repository<Vaccine>,
-  ) {}
+  ) { }
 
   async execute(command: RemoveVaccineCommand): Promise<void> {
     const { id } = command;

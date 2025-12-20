@@ -32,7 +32,7 @@ import { PaymentMethod } from './Core Models/PaymentMethod';
 import { Payment } from './Core Models/Payment';
 import { Debt } from './Core Models/Debt';
 import { GeneralLedger } from './Core Models/GeneralLedger';
-import { ChartOfAccounts } from './Core Models/ChartOfAccounts ';
+import { ChartOfAccounts } from './Core Models/ChartOfAccounts';
 import { VaccinationSchedule } from './Core Models/VaccinationSchedule';
 import { HealthLog } from './Core Models/HealthLog';
 import { Attendance } from './Core Models/Attendance';
@@ -80,11 +80,20 @@ import { ReceiptModule } from './receipt/Receipt.Module';
 import { SpoilageLossModule } from './SpoilageLoss/SpoilageLoss.Module';
 import { TreatmentScheduleModule } from './TreatmentSchedule/TreatmentSchedule.Module';
 import { VaccinationScheduleModule } from './VaccinationSchedule/VaccinationSchedule.Module';
+import { EggProductionModule } from './EggProduction/EggProduction.Module';
+import { ExpenseModule } from './Expense/Expense.Module';
+import { FeedModule } from './feed/feed.module';
+import { JournalEntryModule } from './journal-entry/journal-entry.module';
+import { MedicationModule } from './medication/medication.module';
+import { MortalityModule } from './mortality/mortality.module';
+import { PurchaseReturnModule } from './purchase-return/purchase-return.module';
+import { SlaughterhouseModule } from './slaughterhouse/slaughterhouse.module';
 
 import { Slaughterhouse } from './Core Models/slaughterhouse';
 import { SaleDetail } from './Core Models/sale-detail';
 import { UserModule } from './user/user.module';
 import { RoleModule } from './role/role.module';
+import { Vaccine } from './Core Models/Vaccine';
 
 @Module({
   imports: [
@@ -144,6 +153,7 @@ import { RoleModule } from './role/role.module';
         PurchaseDetail,
         Slaughterhouse,
         SaleDetail,
+        Vaccine,
       ],
     }),
     PoultryModule,

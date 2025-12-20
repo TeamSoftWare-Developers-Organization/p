@@ -12,7 +12,7 @@ import { RemoveVaccineHandler } from './commands/handlers/remove-vaccine.handler
 import { GetVaccineHandler } from './queries/handlers/get-vaccine.handler';
 import { GetVaccinesHandler } from './queries/handlers/get-vaccines.handler';
 import { HealthLog } from 'src/Core Models/HealthLog';
-import { Vaccine } from 'src/Core Models/vaccine';
+import { Vaccine } from 'src/Core Models/Vaccine';
 
 const CommandHandlers = [
   CreateVaccineHandler,
@@ -26,4 +26,4 @@ const QueryHandlers = [GetVaccineHandler, GetVaccinesHandler];
   controllers: [VaccineController],
   providers: [...CommandHandlers, ...QueryHandlers],
 })
-export class VaccineModule {}
+export class VaccineModule { }

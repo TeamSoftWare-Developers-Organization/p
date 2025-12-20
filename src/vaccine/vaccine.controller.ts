@@ -16,7 +16,7 @@ import { UpdateVaccineCommand } from './commands/impl/update-vaccine.command';
 import { RemoveVaccineCommand } from './commands/impl/remove-vaccine.command';
 import { GetVaccineQuery } from './queries/impl/get-vaccine.query';
 import { GetVaccinesQuery } from './queries/impl/get-vaccines.query';
-import { Vaccine } from 'src/Core Models/vaccine';
+import { Vaccine } from 'src/Core Models/Vaccine';
 import { CreateVaccineDto } from './dto/create-vaccine.dto.ts/create-vaccine.dto.ts';
 import { UpdateVaccineDto } from './dto/update-vaccine.dto.ts/update-vaccine.dto.ts';
 
@@ -25,7 +25,7 @@ export class VaccineController {
   constructor(
     private readonly commandBus: CommandBus,
     private readonly queryBus: QueryBus,
-  ) {}
+  ) { }
 
   @Post()
   create(@Body() dto: CreateVaccineDto): Promise<Vaccine> {

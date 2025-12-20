@@ -3,19 +3,18 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateJournalEntryCommand } from '../impl/create-journal-entry.command';
 import { JournalEntry } from 'src/Core Models/JournalEntry';
-import { ChartOfAccounts } from 'src/Core Models/ChartOfAccounts ';
+import { ChartOfAccounts } from 'src/Core Models/ChartOfAccounts';
 import { JournalEntryDetail } from 'src/Core Models/JournalEntryDetail';
 
 @CommandHandler(CreateJournalEntryCommand)
 export class CreateJournalEntryHandler
-  implements ICommandHandler<CreateJournalEntryCommand>
-{
+  implements ICommandHandler<CreateJournalEntryCommand> {
   constructor(
     @InjectRepository(JournalEntry)
     private readonly journalEntryRepository: Repository<JournalEntry>,
     @InjectRepository(ChartOfAccounts)
     private readonly chartOfAccountsRepository: Repository<ChartOfAccounts>,
-  ) {}
+  ) { }
 
   async execute(command: CreateJournalEntryCommand): Promise<JournalEntry> {
     const memo = command.createJournalEntryDto.memo;

@@ -3,16 +3,15 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { NotFoundException, BadRequestException } from '@nestjs/common';
 import { UpdateVaccineCommand } from '../impl/update-vaccine.command';
-import { Vaccine } from 'src/Core Models/vaccine';
+import { Vaccine } from 'src/Core Models/Vaccine';
 
 @CommandHandler(UpdateVaccineCommand)
 export class UpdateVaccineHandler
-  implements ICommandHandler<UpdateVaccineCommand>
-{
+  implements ICommandHandler<UpdateVaccineCommand> {
   constructor(
     @InjectRepository(Vaccine)
     private readonly vaccineRepository: Repository<Vaccine>,
-  ) {}
+  ) { }
 
   async execute(command: UpdateVaccineCommand): Promise<Vaccine> {
     const { id, updateVaccineDto } = command;
