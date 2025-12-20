@@ -1,33 +1,29 @@
-import { Controller, Post, Body, Get, Param } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param, Patch, Delete, ParseIntPipe } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
-import { CreateJournalEntryDto } from './dto/create-journal-entry.dto';
-import { CreateJournalEntryCommand } from './commands/create-journal-entry.command';
-import { GetJournalEntriesQuery } from './queries/get-journal-entries.query';
-import { GetJournalEntryQuery } from './queries/get-journal-entry.query';
+import { CreateChartOfAccountsDto } from './dto/create-chart-of-accounts.dto';
+import { UpdateChartOfAccountDto } from './dto/update-chart-of-accounts.dto';
+import { CreateChartOfAccountCommand } from './commands/impl/create-chart-of-account.command';
+import { GetChartOfAccountsQuery } from './queries/impl/get-chart-of-accounts.query';
 
 @Controller('chart-of-accounts')
 export class ChartOfAccountsController {
   constructor(
     private readonly commandBus: CommandBus,
     private readonly queryBus: QueryBus,
-  ) {}
+  ) { }
 
-  @Post('journal-entry')
-  async createJournalEntry(
-    @Body() createJournalEntryDto: CreateJournalEntryDto,
-  ) {
-    return this.commandBus.execute(
-      new CreateJournalEntryCommand(createJournalEntryDto),
-    );
+  @Post()
+  async create(@Body() dto: CreateChartOfAccountsDto) {
+    return this.commandBus.execute(new CreateChartOfAccountCommand(dto));
   }
 
-  @Get('journal-entries')
-  async getJournalEntries() {
-    return this.queryBus.execute(new GetJournalEntriesQuery());
+  @Get()
+  async findAll() {
+    return this.queryBus.execute(new GetChartOfAccountsQuery());
   }
 
-  @Get('journal-entry/:id')
-  async getJournalEntry(@Param('id') id: string) {
-    return this.queryBus.execute(new GetJournalEntryQuery(id));
-  }
+  // Add Patch/Delete placeholders if handlers exist or implement them directly via repository for simplicity if needed, 
+  // but let's stick to CQRS pattern if we want to be consistent. 
+  // For now, let's just fix the 404 which is the main issue.
 }
+
