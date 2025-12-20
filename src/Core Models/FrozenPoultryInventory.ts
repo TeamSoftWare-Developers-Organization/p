@@ -1,5 +1,6 @@
 // في ملف: src/frozen-poultry-inventory/frozen-poultry-inventory.entity.ts
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import { Slaughterhouse } from './slaughterhouse';
 
 @Entity()
 export class FrozenPoultryInventory {
@@ -19,5 +20,8 @@ export class FrozenPoultryInventory {
   FreezeDate: Date;
 
   @Column({ type: 'int', nullable: true })
-  SlaughterhouseID: number | null; // إضافة المفتاح الخارجي
+  SlaughterhouseID: number | null;
+
+  @ManyToOne(() => Slaughterhouse, (s) => s.FrozenPoultryInventories)
+  Slaughterhouse: Slaughterhouse;
 }

@@ -25,7 +25,7 @@ export class Slaughterhouse {
 
   @OneToMany(
     () => FrozenPoultryInventory,
-    (inventory) => inventory.SlaughterhouseID,
+    (inventory) => inventory.Slaughterhouse,
   )
-  FrozenPoultryInventories: FrozenPoultryInventory[]; // إضافة العلاقة
+  FrozenPoultryInventories: FrozenPoultryInventory[];
 }
