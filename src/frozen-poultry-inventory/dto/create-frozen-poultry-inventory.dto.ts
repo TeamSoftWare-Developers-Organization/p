@@ -3,21 +3,21 @@ import { IsNotEmpty, IsNumber, IsDateString, IsOptional } from 'class-validator'
 export class CreateFrozenPoultryInventoryDto {
   @IsNotEmpty()
   @IsNumber()
-  poultryTypeId: number;
+  PoultryTypeID: number;
 
   @IsNotEmpty()
   @IsNumber()
-  quantity: number;
+  Quantity: number;
 
   @IsNotEmpty()
   @IsNumber()
-  weight: number;
+  Weight: number;
 
   @IsNotEmpty()
   @IsDateString()
-  freezeDate: Date;
+  FreezeDate: Date;
 
   @IsOptional()
   @IsNumber()
-  slaughterhouseId?: number;
+  SlaughterhouseID?: number;
 }

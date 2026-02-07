@@ -9,7 +9,8 @@ import { MaintenanceSchedule } from 'src/Core Models/MaintenanceSchedule';
 import { CreateMedicationHandler } from './commands/handler/create-medication-handler';
 import { UpdateMedicationHandler } from './commands/handler/update-medication-handler';
 import { RemoveMedicationHandler } from './commands/handler/remove-medication-handler';
-import { GetMaintenanceScheduleHandler } from './queries/handlers/get-maintenance-schedule.handler';
+import { GetMedicationHandler } from './queries/handler/get-medication-handler';
+import { GetMedicationsHandler } from './queries/handler/get-medications-handler';
 
 const CommandHandlers = [
   CreateMedicationHandler,
@@ -17,7 +18,8 @@ const CommandHandlers = [
   RemoveMedicationHandler,
 ];
 const QueryHandlers = [
-  GetMaintenanceScheduleHandler,
+  GetMedicationHandler,
+  GetMedicationsHandler,
 ];
 
 @Module({

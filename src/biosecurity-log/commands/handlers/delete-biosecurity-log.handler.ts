@@ -6,15 +6,14 @@ import { BiosecurityLog } from 'src/Core Models/BiosecurityLog';
 
 @CommandHandler(DeleteBiosecurityLogCommand)
 export class DeleteBiosecurityLogHandler
-  implements ICommandHandler<DeleteBiosecurityLogCommand>
-{
+  implements ICommandHandler<DeleteBiosecurityLogCommand> {
   constructor(
     @InjectRepository(BiosecurityLog)
     private readonly repository: Repository<BiosecurityLog>,
-  ) {}
+  ) { }
 
   async execute(command: DeleteBiosecurityLogCommand): Promise<void> {
     const { id } = command;
-    await this.repository.delete(id);
+    await this.repository.delete({ LogID: id });
   }
 }

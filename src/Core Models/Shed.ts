@@ -10,7 +10,9 @@ import { Poultry } from './Poultry';
 import { EggProduction } from './EggProduction';
 import { Mortality } from './Mortality';
 import { TreatmentSchedule } from './TreatmentSchedule';
-import { PoultryBatch } from './PoultryBatch';
+import { PoultryBatch as PoultryBatches } from './PoultryBatch';
+import { FeedConsumption } from './FeedConsumption';
+
 
 @Entity('sheds')
 export class Shed {
@@ -71,8 +73,15 @@ export class Shed {
     treatmentSchedules: TreatmentSchedule[];
 
     @OneToMany(
-        () => PoultryBatch,
-        (poultryBatch: PoultryBatch) => poultryBatch.Coop,
+        () => PoultryBatches,
+        (poultryBatch: PoultryBatches) => poultryBatch.Coop,
     )
-    poultryBatches: PoultryBatch[];
+    poultryBatches: PoultryBatches[];
+
+    @OneToMany(
+        () => FeedConsumption,
+        (feedConsumption: FeedConsumption) => feedConsumption.Shed,
+    )
+    feedConsumptions: FeedConsumption[];
 }
+

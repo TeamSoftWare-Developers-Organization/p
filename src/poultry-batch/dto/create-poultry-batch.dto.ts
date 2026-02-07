@@ -1,27 +1,30 @@
-import { IsString, IsNotEmpty, IsOptional, IsInt, IsDateString } from 'class-validator';
+import { IsString, IsNotEmpty, IsOptional, IsInt } from 'class-validator';
 
 export class CreatePoultryBatchDto {
   @IsString()
   @IsNotEmpty()
-  batchName: string;
+  BatchName: string;
 
   @IsInt()
-  @IsNotEmpty()
-  breedId: number;
+  @IsOptional()
+  CoopID?: number;
 
   @IsInt()
-  @IsNotEmpty()
-  coopId: number;
+  @IsOptional()
+  SlaughterhouseID?: number;
 
   @IsInt()
-  @IsNotEmpty()
-  chickCount: number;
+  @IsOptional()
+  BreedID?: number;
 
-  @IsDateString()
-  @IsNotEmpty()
-  arrivalDate: Date;
+  @IsInt()
+  @IsOptional()
+  ChickCount?: number;
+
+  @IsOptional()
+  ArrivalDate?: Date;
 
   @IsString()
   @IsOptional()
-  description: string;
+  Description?: string;
 }

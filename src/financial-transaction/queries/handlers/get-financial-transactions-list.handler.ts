@@ -1,15 +1,17 @@
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { GetFinancialTransactionsListQuery } from '../impl/get-financial-transactions-list.query';
+import { FinancialTransaction } from 'src/Core Models/FinancialTransaction';
 
 @QueryHandler(GetFinancialTransactionsListQuery)
 export class GetFinancialTransactionsListHandler implements IQueryHandler<GetFinancialTransactionsListQuery> {
-  constructor() {}
+  constructor(
+    @InjectRepository(FinancialTransaction)
+    private readonly repository: Repository<FinancialTransaction>,
+  ) { }
 
-  async execute(query: GetFinancialTransactionsListQuery): Promise<any[]> {
-    console.log('Executing GetFinancialTransactionsListQuery', query);
-    return [
-        { id: '1', amount: 100, description: 'Sample Transaction 1' },
-        { id: '2', amount: 200, description: 'Sample Transaction 2' }
-    ];
+  async execute(query: GetFinancialTransactionsListQuery): Promise<FinancialTransaction[]> {
+    return this.repository.find();
   }
 }

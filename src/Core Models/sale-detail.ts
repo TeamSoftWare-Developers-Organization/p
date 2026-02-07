@@ -25,6 +25,9 @@ export class SaleDetail {
   @Column({ type: 'decimal', precision: 10, scale: 2 })
   UnitPrice: number;
 
+  @Column({ default: 'Poultry' }) // Default to Poultry for existing records
+  ItemType: string; // 'Poultry' | 'Egg'
+
   // العلاقات
   @ManyToOne(() => Sale, (sale) => sale.SaleDetails)
   @JoinColumn({ name: 'SaleID' })

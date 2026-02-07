@@ -24,6 +24,9 @@ export class Poultry {
   @Column({ type: 'int', nullable: true })
   BreedID: number | null;
 
+  @Column({ type: 'int', nullable: true })
+  CoopID: number | null;
+
   @ManyToOne(() => Shed, (shed) => shed.poultries)
   Coop: Shed;
 

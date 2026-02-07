@@ -1,13 +1,20 @@
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { GetAttendancesQuery } from '../impl/get-attendances.query';
+import { Attendance } from '../../../Core Models/Attendance';
 
 @QueryHandler(GetAttendancesQuery)
 export class GetAttendancesHandler
-  implements IQueryHandler<GetAttendancesQuery>
-{
+  implements IQueryHandler<GetAttendancesQuery> {
+  constructor(
+    @InjectRepository(Attendance)
+    private readonly attendanceRepository: Repository<Attendance>,
+  ) { }
+
   async execute(query: GetAttendancesQuery) {
-    // For now, we'll return a placeholder.
-    // In a real application, you'd fetch this from the database.
-    return [{ id: 1, status: 'present' }];
+    return this.attendanceRepository.find({
+      relations: ['Employee'],
+    });
   }
 }

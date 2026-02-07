@@ -1,6 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
 import { Feed } from './Feed';
-import { Poultry } from './Poultry';
+import { Shed } from './Shed';
+
 
 @Entity()
 export class FeedConsumption {
@@ -16,6 +17,7 @@ export class FeedConsumption {
   @ManyToOne(() => Feed, (feed) => feed.FeedConsumptions)
   Feed: Feed;
 
-  @ManyToOne(() => Poultry, (poultry) => poultry.Coop)
-  Poultry: Poultry;
+  @ManyToOne(() => Shed, (shed) => shed.feedConsumptions)
+  Shed: Shed;
 }
+

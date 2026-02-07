@@ -1,31 +1,31 @@
 import { Controller, Post, Body, Get, Param, ParseIntPipe } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { CreateVaccinationScheduleCommand } from './command/CreateVaccinationSchedule.Command';
+import { GetVaccinationSchedulesQuery } from './queries/impl/get-vaccination-schedules.query';
+import { GetVaccinationScheduleQuery } from './queries/impl/get-vaccination-schedule.query';
+import { VaccinationSchedule } from 'src/Core Models/VaccinationSchedule';
 
-@Controller('vaccination-schedules')
+@Controller('vaccination-schedule')
 export class VaccinationScheduleController {
   constructor(
     private readonly commandBus: CommandBus,
     private readonly queryBus: QueryBus,
-  ) {}
+  ) { }
 
   @Post()
-  async create(@Body() createVaccinationScheduleDto: CreateVaccinationScheduleCommand) {
-    // إرسال الأمر إلى Command Bus
+  async create(@Body() createVaccinationScheduleDto: any) {
     return this.commandBus.execute(
       new CreateVaccinationScheduleCommand(createVaccinationScheduleDto),
     );
   }
 
-  // نقطة نهاية وهمية لجلب جدول واحد
-  @Get(':id')
-  async findOne(@Param('id', ParseIntPipe) id: number) {
-    return `يعرض تفاصيل جدول التطعيم رقم: ${id}`;
+  @Get()
+  async findAll(): Promise<VaccinationSchedule[]> {
+    return this.queryBus.execute(new GetVaccinationSchedulesQuery());
   }
 
-  // نقطة نهاية وهمية لجلب جميع الجداول
-  @Get()
-  async findAll() {
-    return 'يعرض قائمة بجميع جداول التطعيم المسجلة.';
+  @Get(':id')
+  async findOne(@Param('id', ParseIntPipe) id: number): Promise<VaccinationSchedule> {
+    return this.queryBus.execute(new GetVaccinationScheduleQuery(id));
   }
 }

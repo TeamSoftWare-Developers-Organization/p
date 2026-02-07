@@ -14,16 +14,16 @@ import { Payroll } from './Payroll';
 
 @Entity()
 export class Employee {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({ name: 'EmployeeID' })
   EmployeeID: number;
 
-  @Column()
-  UserID: number;
+  @Column({ name: 'UserID', nullable: true })
+  UserID: number | null;
 
-  @Column({ length: 100 })
+  @Column({ name: 'EmployeeName', length: 100 })
   EmployeeName: string;
 
-  @Column({ type: 'date' })
+  @Column({ name: 'HireDate', type: 'date' })
   HireDate: Date;
 
   // العلاقات

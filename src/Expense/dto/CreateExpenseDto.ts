@@ -7,15 +7,20 @@ import {
 } from 'class-validator';
 
 export class CreateExpenseDto {
+  @IsNumber()
+  @IsNotEmpty()
+  EmployeeID: number;
+
   @IsDateString()
   @IsNotEmpty()
-  expenseDate: string;
+  ExpenseDate: string;
 
   @IsNumber()
   @IsNotEmpty()
-  amount: number;
+  Amount: number;
 
   @IsString()
   @IsNotEmpty()
-  description: string;
+  Description: string;
 }
+

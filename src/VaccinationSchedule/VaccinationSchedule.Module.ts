@@ -6,8 +6,11 @@ import { VaccinationSchedule } from 'src/Core Models/VaccinationSchedule';
 import { VaccinationScheduleController } from './VaccinationSchedule.Controller';
 
 
+import { GetVaccinationSchedulesHandler } from './queries/handlers/get-vaccination-schedules.handler';
+import { GetVaccinationScheduleHandler } from './queries/handlers/get-vaccination-schedule.handler';
+
 export const CommandHandlers = [CreateVaccinationScheduleHandler];
-export const QueryHandlers = []; 
+export const QueryHandlers = [GetVaccinationSchedulesHandler, GetVaccinationScheduleHandler];
 
 @Module({
   imports: [
@@ -21,4 +24,4 @@ export const QueryHandlers = [];
     // يجب إضافة الخدمات (Services) أو Repositories هنا
   ],
 })
-export class VaccinationScheduleModule {}
+export class VaccinationScheduleModule { }

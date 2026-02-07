@@ -9,6 +9,9 @@ export class Breed {
   BreedName: string;
   @Column({ type: 'varchar', length: 255, nullable: true })
   Description: string | null;
+  @Column({ type: 'decimal', precision: 10, scale: 2, default: 0 })
+  DefaultPrice: number;
+
   @OneToMany(() => Poultry, (poultry: Poultry) => poultry.BreedRelation)
   Poultries: Poultry[];
 }

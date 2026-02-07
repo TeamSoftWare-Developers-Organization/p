@@ -13,7 +13,7 @@ export class CreateFeedConsumptionHandler implements ICommandHandler<CreateFeedC
   constructor(
     @InjectRepository(FeedConsumption)
     private readonly feedConsumptionRepository: Repository<FeedConsumption>,
-  ) {}
+  ) { }
 
   /**
    * ينفذ أمر إنشاء سجل استهلاك العلف.
@@ -23,13 +23,14 @@ export class CreateFeedConsumptionHandler implements ICommandHandler<CreateFeedC
   async execute(command: CreateFeedConsumptionCommand): Promise<FeedConsumption> {
     const { createFeedConsumptionDto } = command;
 
-    // إنشاء الكيان من DTO
     const consumption = this.feedConsumptionRepository.create({
-      ...createFeedConsumptionDto,
-      ConsumptionDate: new Date(createFeedConsumptionDto.consumptionDate), // تحويل التاريخ من string إلى Date
+      ConsumptionDate: new Date(createFeedConsumptionDto.ConsumptionDate),
+      Quantity: createFeedConsumptionDto.Quantity,
+      Feed: { FeedID: createFeedConsumptionDto.FeedID } as any,
+      Shed: createFeedConsumptionDto.ShedID ? ({ id: createFeedConsumptionDto.ShedID } as any) : null,
     });
 
-    // حفظ الكيان في قاعدة البيانات
     return this.feedConsumptionRepository.save(consumption);
   }
+
 }

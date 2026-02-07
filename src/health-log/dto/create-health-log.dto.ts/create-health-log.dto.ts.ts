@@ -9,17 +9,22 @@ import {
 export class CreateHealthLogDto {
   @IsNumber()
   @IsNotEmpty()
-  poultryID: number;
+  PoultryID: number;
 
   @IsDateString()
   @IsNotEmpty()
-  logDate: Date;
+  LogDate: string;
 
   @IsString()
   @IsNotEmpty()
-  healthStatus: string;
+  Condition: string;
 
   @IsString()
   @IsOptional()
-  notes: string;
+  Notes?: string;
+
+  @IsString()
+  @IsOptional()
+  Treatment?: string;
 }
+

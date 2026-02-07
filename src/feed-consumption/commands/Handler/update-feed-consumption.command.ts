@@ -14,7 +14,7 @@ export class UpdateFeedConsumptionHandler implements ICommandHandler<UpdateFeedC
   constructor(
     @InjectRepository(FeedConsumption)
     private readonly feedConsumptionRepository: Repository<FeedConsumption>,
-  ) {}
+  ) { }
 
   /**
    * ينفذ عملية التحديث.
@@ -24,18 +24,26 @@ export class UpdateFeedConsumptionHandler implements ICommandHandler<UpdateFeedC
   async execute(command: UpdateFeedConsumptionCommand): Promise<FeedConsumption> {
     const { id, updateFeedConsumptionDto } = command;
 
-    // استخدام preload لإنشاء نسخة من الكيان مع البيانات الجديدة، مع الحفاظ على المعرف
-    const consumption = await this.feedConsumptionRepository.preload({
-      FeedConsumptionID: id,
-      ...updateFeedConsumptionDto,
-    });
+    const consumption = await this.feedConsumptionRepository.findOne({ where: { FeedConsumptionID: id } });
 
-    // التحقق مما إذا كان السجل موجودًا
     if (!consumption) {
       throw new NotFoundException(`FeedConsumption record with ID ${id} not found`);
     }
 
-    // حفظ الكيان المحدث
+    if (updateFeedConsumptionDto.ConsumptionDate) {
+      consumption.ConsumptionDate = new Date(updateFeedConsumptionDto.ConsumptionDate);
+    }
+    if (updateFeedConsumptionDto.Quantity !== undefined) {
+      consumption.Quantity = updateFeedConsumptionDto.Quantity;
+    }
+    if (updateFeedConsumptionDto.FeedID) {
+      consumption.Feed = { FeedID: updateFeedConsumptionDto.FeedID } as any;
+    }
+    if (updateFeedConsumptionDto.ShedID) {
+      consumption.Shed = { id: updateFeedConsumptionDto.ShedID } as any;
+    }
+
     return this.feedConsumptionRepository.save(consumption);
   }
+
 }

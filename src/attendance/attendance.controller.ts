@@ -22,7 +22,7 @@ export class AttendanceController {
   constructor(
     private readonly commandBus: CommandBus,
     private readonly queryBus: QueryBus,
-  ) {}
+  ) { }
 
   @Post()
   create(@Body() createAttendanceDto: CreateAttendanceDto) {

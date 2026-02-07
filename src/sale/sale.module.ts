@@ -12,7 +12,8 @@ import { RemoveSaleHandler } from './commands/handlers/remove-sale.handler';
 import { GetSaleHandler } from './queries/handlers/get-sale.handler';
 import { GetSalesHandler } from './queries/handlers/get-sales.handler';
 import { Sale } from 'src/Core Models/Sale ';
-import { SaleDetailDto } from 'src/sale/dto/sale-detail.dto';
+import { SaleDetail } from 'src/Core Models/sale-detail';
+
 const CommandHandlers = [
   CreateSaleHandler,
   UpdateSaleHandler,
@@ -21,8 +22,8 @@ const CommandHandlers = [
 const QueryHandlers = [GetSaleHandler, GetSalesHandler];
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Sale, SaleDetailDto]), CqrsModule],
+  imports: [TypeOrmModule.forFeature([Sale, SaleDetail]), CqrsModule],
   controllers: [SaleController],
   providers: [...CommandHandlers, ...QueryHandlers],
 })
-export class SaleModule {}
+export class SaleModule { }

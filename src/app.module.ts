@@ -45,6 +45,9 @@ import { BiosecurityLog } from './Core Models/BiosecurityLog';
 import { QualityControl } from './Core Models/QualityControl';
 import { FinancialTransaction } from './Core Models/FinancialTransaction';
 import { PoultryBatch } from './Core Models/PoultryBatch';
+import { PoultryType } from './Core Models/PoultryType';
+import { SlaughterRecord } from './Core Models/SlaughterRecord';
+import { CycleSummary } from './Core Models/CycleSummary';
 import { EggInventory } from './Core Models/EggInventory';
 import { Receipt } from './Core Models/Receipt';
 import { PurchaseDetail } from './Core Models/purchase-detail';
@@ -87,9 +90,12 @@ import { JournalEntryModule } from './journal-entry/journal-entry.module';
 import { MedicationModule } from './medication/medication.module';
 import { MortalityModule } from './mortality/mortality.module';
 import { PurchaseReturnModule } from './purchase-return/purchase-return.module';
+import { InventoryTakeDetailModule } from './inventory-take-detail/inventory-take-detail.module';
 import { SlaughterhouseModule } from './slaughterhouse/slaughterhouse.module';
+import { PoultryTypeModule } from './poultry-type/poultry-type.module';
 
 import { Slaughterhouse } from './Core Models/slaughterhouse';
+
 import { SaleDetail } from './Core Models/sale-detail';
 import { UserModule } from './user/user.module';
 import { RoleModule } from './role/role.module';
@@ -155,6 +161,9 @@ import { CoopModule } from './coop/coop.module';
         Slaughterhouse,
         SaleDetail,
         Vaccine,
+        PoultryType,
+        SlaughterRecord,
+        CycleSummary,
       ],
     }),
     PoultryModule,
@@ -187,7 +196,6 @@ import { CoopModule } from './coop/coop.module';
     PoultryBatchModule,
     QualityControlModule,
     ReceiptModule,
-    SlaughterhouseModule,
     EggProductionModule,
     ExpenseModule,
     FeedModule,
@@ -200,9 +208,13 @@ import { CoopModule } from './coop/coop.module';
     VaccinationScheduleModule,
     RoleModule,
     UserModule,
-    CoopModule
+    CoopModule,
+    InventoryTakeDetailModule,
+    SlaughterhouseModule,
+    PoultryTypeModule
   ],
   controllers: [AppController],
+
   providers: [AppService],
 })
 export class AppModule { }

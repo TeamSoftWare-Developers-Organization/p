@@ -6,6 +6,7 @@ import { BiosecurityLogController } from './biosecurity-log.controller';
 // Import command handlers
 import { CreateBiosecurityLogHandler } from './commands/handlers/create-biosecurity-log.handler';
 import { UpdateBiosecurityLogHandler } from './commands/handlers/update-biosecurity-log.handler';
+import { DeleteBiosecurityLogHandler } from './commands/handlers/delete-biosecurity-log.handler';
 
 // Import query handlers
 import { GetBiosecurityLogByIdHandler } from './queries/handlers/get-biosecurity-log-by-id.handler';
@@ -15,6 +16,7 @@ import { BiosecurityLog } from 'src/Core Models/BiosecurityLog';
 const CommandHandlers = [
   CreateBiosecurityLogHandler,
   UpdateBiosecurityLogHandler,
+  DeleteBiosecurityLogHandler,
 ];
 const QueryHandlers = [
   GetBiosecurityLogByIdHandler,

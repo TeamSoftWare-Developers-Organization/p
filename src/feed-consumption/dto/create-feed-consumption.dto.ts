@@ -10,33 +10,34 @@ export class CreateFeedConsumptionDto {
    */
   @IsDateString()
   @IsNotEmpty()
-  consumptionDate: string;
+  ConsumptionDate: string;
 
   /**
    * كمية العلف المستهلكة (بالكيلوغرام أو الوحدة المعتمدة).
    */
   @IsNumber()
   @IsNotEmpty()
-  quantityConsumed: number;
+  Quantity: number;
 
   /**
    * معرف العلف المستخدم (يرتبط بكيان Feed).
    */
   @IsNumber()
   @IsNotEmpty()
-  feedId: number;
+  FeedID: number;
 
   /**
    * معرف الحظيرة التي حدث فيها الاستهلاك (يرتبط بكيان Coop).
    */
   @IsNumber()
-  @IsOptional() // يمكن أن يكون اختياريًا إذا كان الاستهلاك على مستوى المزرعة
-  coopId?: number;
+  @IsOptional()
+  ShedID?: number;
 
   /**
    * ملاحظات إضافية حول الاستهلاك.
    */
   @IsString()
   @IsOptional()
-  notes?: string;
+  Notes?: string;
 }
+

@@ -11,5 +11,10 @@ export class SaleDetailDto {
 
   @IsNumber()
   @IsNotEmpty()
+  @IsNumber()
+  @IsNotEmpty()
   unitPrice: number;
+
+  @IsNotEmpty()
+  itemType: string; // 'Poultry' | 'Egg'
 }

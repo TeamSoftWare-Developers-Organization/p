@@ -7,18 +7,25 @@ import { HealthLog } from 'src/Core Models/HealthLog';
 
 @CommandHandler(CreateHealthLogCommand)
 export class CreateHealthLogHandler
-  implements ICommandHandler<CreateHealthLogCommand>
-{
+  implements ICommandHandler<CreateHealthLogCommand> {
   constructor(
     @InjectRepository(HealthLog)
     private readonly healthLogRepository: Repository<HealthLog>,
-  ) {}
+  ) { }
 
   async execute(command: CreateHealthLogCommand): Promise<HealthLog> {
     const { createHealthLogDto } = command;
-    const healthLog = this.healthLogRepository.create(
-      createHealthLogDto as Partial<HealthLog>,
-    );
+
+    const healthLog = this.healthLogRepository.create({
+      PoultryID: createHealthLogDto.PoultryID,
+      LogDate: new Date(createHealthLogDto.LogDate),
+      Condition: createHealthLogDto.Condition,
+      Notes: createHealthLogDto.Notes,
+      Treatment: createHealthLogDto.Treatment,
+      Poultry: { PoultryID: createHealthLogDto.PoultryID } as any,
+    });
+
     return this.healthLogRepository.save(healthLog);
   }
+
 }

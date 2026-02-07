@@ -2,6 +2,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 import { PoultryBatch } from './PoultryBatch';
 import { FrozenPoultryInventory } from './FrozenPoultryInventory';
+import { SlaughterRecord } from './SlaughterRecord';
 
 @Entity()
 export class Slaughterhouse {
@@ -28,4 +29,7 @@ export class Slaughterhouse {
     (inventory) => inventory.Slaughterhouse,
   )
   FrozenPoultryInventories: FrozenPoultryInventory[];
+
+  @OneToMany(() => SlaughterRecord, (record) => record.Slaughterhouse)
+  slaughterRecords: SlaughterRecord[];
 }

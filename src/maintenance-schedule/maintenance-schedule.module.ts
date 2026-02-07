@@ -7,8 +7,11 @@ import { UpdateMaintenanceScheduleHandler } from './commands/handlers/update-mai
 import { GetMaintenanceScheduleHandler } from './queries/handlers/get-maintenance-schedule.handler';
 import { UpdateMaintenanceScheduleCommand } from './commands/impl/update-maintenance-schedule.command';
 
+import { GetMaintenanceSchedulesHandler } from './queries/handlers/get-maintenance-schedules.handler';
+
 export const CommandHandlers = [UpdateMaintenanceScheduleCommand, UpdateMaintenanceScheduleHandler];
-export const QueryHandlers = [GetMaintenanceScheduleHandler, GetMaintenanceScheduleHandler];
+export const QueryHandlers = [GetMaintenanceScheduleHandler, GetMaintenanceSchedulesHandler];
+
 
 @Module({
   imports: [
