@@ -13,6 +13,10 @@ import { GetSaleHandler } from './queries/handlers/get-sale.handler';
 import { GetSalesHandler } from './queries/handlers/get-sales.handler';
 import { Sale } from 'src/Core Models/Sale ';
 import { SaleDetail } from 'src/Core Models/sale-detail';
+import { Product } from 'src/Core Models/Product';
+import { Poultry } from 'src/Core Models/Poultry';
+import { FrozenPoultryInventory } from 'src/Core Models/FrozenPoultryInventory';
+import { EggInventory } from 'src/Core Models/EggInventory';
 
 const CommandHandlers = [
   CreateSaleHandler,
@@ -22,8 +26,18 @@ const CommandHandlers = [
 const QueryHandlers = [GetSaleHandler, GetSalesHandler];
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Sale, SaleDetail]), CqrsModule],
   controllers: [SaleController],
+  imports: [
+    TypeOrmModule.forFeature([
+      Sale,
+      SaleDetail,
+      Poultry,
+      FrozenPoultryInventory,
+      EggInventory,
+      Product
+    ]),
+    CqrsModule
+  ],
   providers: [...CommandHandlers, ...QueryHandlers],
 })
 export class SaleModule { }

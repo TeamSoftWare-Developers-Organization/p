@@ -102,6 +102,11 @@ import { RoleModule } from './role/role.module';
 import { Vaccine } from './Core Models/Vaccine';
 import { CoopModule } from './coop/coop.module';
 
+import { Product } from './Core Models/Product';
+import { SystemSetting } from './Core Models/SystemSetting';
+import { ProductModule } from './product/product.module';
+import { SystemSettingModule } from './system-setting/system-setting.module';
+
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -164,6 +169,8 @@ import { CoopModule } from './coop/coop.module';
         PoultryType,
         SlaughterRecord,
         CycleSummary,
+        Product,
+        SystemSetting,
       ],
     }),
     PoultryModule,
@@ -211,7 +218,9 @@ import { CoopModule } from './coop/coop.module';
     CoopModule,
     InventoryTakeDetailModule,
     SlaughterhouseModule,
-    PoultryTypeModule
+    PoultryTypeModule,
+    ProductModule,
+    SystemSettingModule
   ],
   controllers: [AppController],
 

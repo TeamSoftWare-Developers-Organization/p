@@ -6,6 +6,7 @@ import { Sale } from 'src/Core Models/Sale ';
 import { SaleDetail } from 'src/Core Models/sale-detail';
 import { FrozenPoultryInventory } from 'src/Core Models/FrozenPoultryInventory';
 import { EggInventory } from 'src/Core Models/EggInventory';
+import { Product } from 'src/Core Models/Product';
 
 @CommandHandler(CreateSaleCommand)
 export class CreateSaleHandler implements ICommandHandler<CreateSaleCommand> {
@@ -24,24 +25,20 @@ export class CreateSaleHandler implements ICommandHandler<CreateSaleCommand> {
       // 2. تحديث المخزون لكل عنصر في المبيعات
       const inventoryRepository = manager.getRepository(FrozenPoultryInventory);
       const eggInventoryRepository = manager.getRepository(EggInventory);
+      const productRepository = manager.getRepository(Product);
 
       for (const detail of createSaleDto.saleDetails) {
         if (detail.itemType === 'Egg') {
           // Egg Logic: FIFO Deduction
           // 1. Get all available egg inventory sorted by date (Oldest first)
           const eggStock = await eggInventoryRepository.find({
-            where: { CoopID: detail.itemID }, // Assuming itemID for eggs refers to CoopID or just a placeholder? 
-            // Correction: For Eggs, itemID might be generic "Egg" ID, but inventory is by Coop.
-            // However, sales usually sell "Eggs" as a commodity, not per Coop. 
-            // Let's assume we sell from ANY coop (FIFO across all).
-            // Or if itemID is CoopID, we sell specific coop's eggs.
-            // Given the UI for EggProduction separates by Coop, but sales might be general.
-            // Let's assume itemID passed for Eggs is 0 or ignored, OR we implement "Sell by Coop".
-            // BETTER APPROACH FOR NOW: Fetch ALL egg inventory with Quantity > 0, order by Date ASC.
+            // where: { CoopID: detail.itemID }, // Generic or specific coop? ItemID 99999 from frontend suggests generic.
+            // If itemID is not a valid CoopID, let's just fetch all.
+            // For now, we fetch ALL stock > 0 ordered by date.
+            where: {},
             order: { InventoryDate: 'ASC' },
           });
 
-          // Filter out empty records just in case
           const availableStock = eggStock.filter(e => e.Quantity > 0);
 
           let remainingToDeduct = detail.quantity;
@@ -61,6 +58,23 @@ export class CreateSaleHandler implements ICommandHandler<CreateSaleCommand> {
             await eggInventoryRepository.save(stockItem);
           }
 
+        } else if (detail.itemType === 'Product') {
+          // General Product Logic
+          const product = await productRepository.findOne({
+            where: { ProductID: detail.itemID }
+          });
+
+          if (!product) {
+            throw new NotFoundException(`Product with ID ${detail.itemID} not found.`);
+          }
+
+          if (product.StockQuantity < detail.quantity) {
+            throw new BadRequestException(`Insufficient stock for product '${product.ProductName}'. Available: ${product.StockQuantity}, Requested: ${detail.quantity}`);
+          }
+
+          product.StockQuantity -= detail.quantity;
+          await productRepository.save(product);
+
         } else {
           // Poultry Logic (Existing)
           const inventoryItem = await inventoryRepository.findOne({
@@ -69,13 +83,13 @@ export class CreateSaleHandler implements ICommandHandler<CreateSaleCommand> {
 
           if (!inventoryItem) {
             throw new NotFoundException(
-              `Item with ID ${detail.itemID} not found in inventory.`,
+              `Item with ID ${detail.itemID} not found in poultry inventory.`,
             );
           }
 
           if (inventoryItem.Quantity < detail.quantity) {
             throw new BadRequestException(
-              `Insufficient stock for item with ID ${detail.itemID}.`,
+              `Insufficient stock for poultry item with ID ${detail.itemID}.`,
             );
           }
 
